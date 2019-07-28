@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+
+{% include "model-hero.html" %}
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-three-fifths is-offset-one-fifth">
+                <div class="notification">
+                    <div class="field">
+                        <h1 class="has-text-centered is-size-3">Entre!</h1>
+                    </div>
+
+
+                    <form method="POST" action="submit">
+                        {% csrf_token %}
+
+                        <div class="columns is-centered is-multiline">
+                            <div class="column has-text-centered is-half">
+                                <div class="field">
+                                    <label class="label">E-mail:</label>
+                                </div>
+                                <div class="field">
+                                    <div class="control center-element">
+                                        <input type="email" name="email" class="input set-input-width">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="columns is-centered is-multiline">
+                            <div class="column has-text-centered is-half">
+                                <div class="field">
+                                    <label class="label">Senha:</label>
+                                </div>
+                                <div class="field">
+                                    <div class="control center-element">
+                                        <input type="password" name="password" class="input set-input-width">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="columns is-centered">
+                            <div class="column has-text-centered is-half">
+                                <div class="field">
+                                    {% for message in messages %}
+                                    <p class="help is-danger">{{ message }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="columns is-centered is-multiline">
+                            <div class="column has-text-centered is-half">
+                                <div class="field">
+                                    <div class="control">
+                                        <button class="button is-primary is-fullwidth" type="submit">Entrar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="columns is-centered">
+                            <div class="column has-text-centered is-half">
+                                <div class="field">
+                                    <h3><a href="/signup/" class="has-text-centered is-fullwidth">Não tem conta? Faça já
+                                        o seu
+                                        cadastro!</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include "model-footer.html" %}
+
+</body>
+</html>

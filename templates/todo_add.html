@@ -1,0 +1,116 @@
+{% extends "model-page.html" %}
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <form method="POST" action="submit">
+            {% csrf_token %}
+            <div class="columns is-centered is-multiline">
+                <div class="column has-text-centered is-half">
+                    <div class="field">
+                        <div class="control">
+                            <input type="number" name="id" value="{{todo.id}}" hidden>
+                            <input type="text" name="task" id="task" class="input" placeholder="Título"
+                                   value="{{todo.task}}" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered is-multiline">
+                <div class="column has-text-centered is-half">
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select required name="status">
+                                    <option></option>
+                                    {% for status in statuses %}
+                                    {{status.id}}
+                                    <option value="{{status.id}}"
+                                            {% if todo and todo.status == status.id|stringformat:'s' %} "selected" {% endif %} >
+                                    {{status.name|capfirst}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered is-multiline">
+                <div class="column has-text-centered is-half">
+                    <div class="field">
+                        <div class="control">
+                            <div class="select" >
+                                <select name="priority">
+                                    <option></option>
+                                    {% for priority in priorities %}
+                                    <option value="{{priority.id}}" {% if priority.id|stringformat:"s" == todo.priority %} selected {% endif %}>
+                                    {{priority.name|capfirst}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered is-multiline">
+                <div class="column has-text-centered is-half">
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select name="color">
+                                    <option></option>
+                                    {% for color in colors %}
+                                    <option value="{{color.id}}"
+                                            {% if color.id|stringformat:"s" == todo.color %} selected {% endif %}>
+                                    {{color.name|capfirst}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-centered is-multiline">
+                <div class="column has-text-centered is-half">
+                    <div class="field">
+                        <div class="control">
+                            <input type="date" class="input" name="due_date" value="{{todo.due_date}}" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-centered is-multiline">
+                <div class="column has-text-centered is-half">
+                    <div class="field">
+                        <div class="control">
+                            <textarea name="description" class="textarea has-fixed-size" placeholder="Comentários">{{todo.description}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column has-text-centered is-half">
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button type="submit" class="button is-link">Salvar</button>
+                            <a href="/" class="button">Cancelar</a>
+                            {% if todo %}
+                                <a href="/todo/delete/{{todo.id}}" class="button is-danger">Excluir</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+{% endblock %}

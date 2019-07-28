@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+        .center-element {
+            tex-align: center !important;
+            }
+
+        .set-input-width {
+            width: 25em !important;
+            }
+    </style>
+</head>
+<body>
+
+{% include "model-hero.html" %}
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-three-fifths is-offset-one-fifth">
+                <div class="notification">
+                    {% load widget_tweaks %}
+                    <div class="field">
+                        <h1 class="has-text-centered is-size-3">Crie a sua conta!</h1>
+                    </div>
+
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        {% for field in form %}
+                        <div class="columns is-centered is-multiline">
+                            <div class="column has-text-centered is-half">
+                                <div class="field">
+                                    {{ field.label_tag}}
+                                </div>
+                                <div class="field">
+                                    <div class="control center-element">
+                                        {{ field|add_class:"input set-input-width" }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% for error in field.errors %}
+                        <p class="help is-danger">{{ error }}</p>
+                        {% endfor %}
+
+                        {% endfor %}
+                        <div class="columns is-centered is-multiline">
+                            <div class="column has-text-centered is-half">
+                                <div class="field">
+                                    <div class="control">
+                                        <button class="button is-primary is-fullwidth" type="submit">Cadastre-se
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="columns is-centered">
+                            <div class="column has-text-centered is-half">
+                                <div class="field">
+                                    <h3><a href="/login/" class="has-text-centered is-fullwidth">Já tem conta? Faça seu
+                                        login!</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include "model-footer.html" %}
+
+</body>
+</html>
