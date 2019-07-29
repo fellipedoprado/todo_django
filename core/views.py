@@ -46,7 +46,7 @@ def save(request):
         task = request.POST.get('task')
         status = request.POST.get('status')
         priority = request.POST.get('priority')
-        due_date = request.POST.get('due_date') if request.POST.get('due_date') else None
+        due_date = request.POST.get('due_date') + ' 23:59:59' if request.POST.get('due_date') else None
         description = request.POST.get('description')
         color = request.POST.get('color')
 

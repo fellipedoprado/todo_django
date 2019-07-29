@@ -42,3 +42,9 @@ class Todo(models.Model):
             return self.due_date.strftime('%Y-%m-%d')
         else:
             return ''
+
+    def get_formatted_due_date(self):
+        if (self.due_date):
+            return self.due_date.strftime('%d/%m/%Y')
+        else:
+            return ''

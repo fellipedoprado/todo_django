@@ -21,7 +21,7 @@
                             <li><span class="fa-li"><i class="fas fa-check-square"></i></span>{{todo.get_status}}</li>
                             {% endif %}
                             {% if todo.due_date %}
-                            <li><span class="fa-li"><i class="fas fa-calendar-day"></i></span>{{todo.due_date}}</li>
+                            <li><span class="fa-li"><i class="fas fa-calendar-day"></i></span>{{todo.get_formatted_due_date}}</li>
                             {% endif %}
                         </ul>
                         {% if todo.description %}
