@@ -36,3 +36,6 @@ class Todo(models.Model):
     def get_status(self):
         status = Status.objects.get(id=self.status)
         return status.name.capitalize()
+
+    def get_due_date(self):
+        return self.due_date.strftime('%Y-%m-%d')

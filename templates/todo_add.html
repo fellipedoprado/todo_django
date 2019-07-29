@@ -10,7 +10,7 @@
                     <div class="field">
                         <div class="control">
                             <input type="number" name="id" value="{{todo.id}}" hidden>
-                            <input type="text" name="task" id="task" class="input" placeholder="Título"
+                            <input type="text" name="task" id="task" class="input" placeholder="To Do"
                                    value="{{todo.task}}" required>
                         </div>
                     </div>
@@ -23,11 +23,10 @@
                         <div class="control">
                             <div class="select">
                                 <select required name="status">
-                                    <option></option>
+                                    <option value="" disabled {% if not todo.status %} selected {% endif %}>Status</option>
                                     {% for status in statuses %}
-                                    {{status.id}}
                                     <option value="{{status.id}}"
-                                            {% if todo and todo.status == status.id|stringformat:'s' %} "selected" {% endif %} >
+                                            {% if todo.status == status.id|stringformat:'s' %} "selected" {% endif %} >
                                     {{status.name|capfirst}}
                                     </option>
                                     {% endfor %}
@@ -44,7 +43,7 @@
                         <div class="control">
                             <div class="select" >
                                 <select name="priority">
-                                    <option></option>
+                                    <option value="" disabled {% if not todo.priority %} selected {% endif %}>Prioridade</option>
                                     {% for priority in priorities %}
                                     <option value="{{priority.id}}" {% if priority.id|stringformat:"s" == todo.priority %} selected {% endif %}>
                                     {{priority.name|capfirst}}
@@ -63,7 +62,7 @@
                         <div class="control">
                             <div class="select">
                                 <select name="color">
-                                    <option></option>
+                                    <option value="" disabled {% if not todo.color %} selected {% endif %}>Cor</option>
                                     {% for color in colors %}
                                     <option value="{{color.id}}"
                                             {% if color.id|stringformat:"s" == todo.color %} selected {% endif %}>
@@ -80,7 +79,7 @@
                 <div class="column has-text-centered is-half">
                     <div class="field">
                         <div class="control">
-                            <input type="date" class="input" name="due_date" value="{{todo.due_date}}" required>
+                            <input type="date" class="input" name="due_date" value="{{todo.get_due_date}}" required>
                         </div>
                     </div>
                 </div>
@@ -100,10 +99,10 @@
                     <div class="field is-grouped">
                         <div class="control">
                             <button type="submit" class="button is-link">Salvar</button>
-                            <a href="/" class="button">Cancelar</a>
                             {% if todo %}
                                 <a href="/todo/delete/{{todo.id}}" class="button is-danger">Excluir</a>
                             {% endif %}
+                            <a href="/" class="button">Cancelar</a>
                         </div>
                     </div>
                 </div>
