@@ -61,5 +61,5 @@ Para o design, foi utilizado Bulma, portanto a aplicação pode facilmente ser v
 
 
 ### Informações adicionais
-
+O site pode ser visitado através do link <https://fdopradoarruda.pythonanywhere.com/>
 Primeira versão 1.0
