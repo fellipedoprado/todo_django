@@ -6,7 +6,7 @@
         <div class="columns is-multiline">
             {% for todo in todos %}
             <div class="column is-3">
-                <div class="card">
+                <div class="card" style="{% if todo.color %} background-color: {{todo.get_color_code}} {% endif %} ">
                     <header class="card-header">
                         <p class="card-header-title">
                             {{todo.task}}

@@ -21,8 +21,8 @@
                 <div class="column has-text-centered is-half">
                     <div class="field">
                         <div class="control">
-                            <div class="select">
-                                <select required name="status">
+                            <div class="select" style="width: 100%;">
+                                <select required name="status" style="width: 100%;">
                                     <option value="" disabled {% if not todo.status %} selected {% endif %}>Status</option>
                                     {% for status in statuses %}
                                     <option value="{{status.id}}"
@@ -41,8 +41,8 @@
                 <div class="column has-text-centered is-half">
                     <div class="field">
                         <div class="control">
-                            <div class="select" >
-                                <select name="priority">
+                            <div class="select" style="width: 100%;">
+                                <select name="priority" style="width: 100%;">
                                     <option value="" disabled {% if not todo.priority %} selected {% endif %}>Prioridade</option>
                                     {% for priority in priorities %}
                                     <option value="{{priority.id}}" {% if priority.id|stringformat:"s" == todo.priority %} selected {% endif %}>
@@ -60,8 +60,8 @@
                 <div class="column has-text-centered is-half">
                     <div class="field">
                         <div class="control">
-                            <div class="select">
-                                <select name="color">
+                            <div class="select" style="width: 100%;">
+                                <select name="color" style="width: 100%;">
                                     <option value="" disabled {% if not todo.color %} selected {% endif %}>Cor</option>
                                     {% for color in colors %}
                                     <option value="{{color.id}}"

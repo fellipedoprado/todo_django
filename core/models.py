@@ -18,10 +18,6 @@ class Todo(models.Model):
     status = models.CharField(max_length=5,  blank=True, null=True)
     priority = models.CharField(max_length=5,  blank=True, null=True)
     color = models.CharField(max_length=5,  blank=True, null=True)
-    #status = models.ForeignKey(Status, on_delete=models.SET_NULL, blank=True, null=True)
-    #priority = models.ForeignKey(Priority, on_delete=models.SET_NULL, blank=True, null=True)
-    #color = models.OneToOneField(Color, on_delete=models.SET_NULL, blank=True, null=True)
-    #fazer created at e updated at
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -37,5 +33,12 @@ class Todo(models.Model):
         status = Status.objects.get(id=self.status)
         return status.name.capitalize()
 
+    def get_color_code(self):
+        color = Color.objects.get(id=self.color)
+        return color.hexadecimal_code
+
     def get_due_date(self):
-        return self.due_date.strftime('%Y-%m-%d')
+        if (self.due_date):
+            return self.due_date.strftime('%Y-%m-%d')
+        else:
+            return ''
